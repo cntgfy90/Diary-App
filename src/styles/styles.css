@@ -1,0 +1,101 @@
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+button, a {
+    cursor: pointer;
+}
+
+.DairyApp {
+    display: flex;
+}
+
+.DiaryColumnLeft {
+    width: 20%;
+    height: 100vh;
+    background-color: #2b2f3e;
+    padding: 20px;
+}
+
+.DiaryColumnRight {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.DiaryColumnLeft__title {
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.DiaryColumnLeft__subtitle {
+    color: #808080;
+}
+
+.Items {
+    border: 1px solid #f2f2f2;
+    padding: 10px 10px 10px 15px;
+    width: 30%;
+    box-shadow: 3px 3px 11px -1px rgba(0,0,0,.33);
+    border-radius: 3px;
+}
+
+.Item {
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    border-bottom: 1px solid #f2f2f2;
+    padding-bottom: 5px;
+}
+
+.Items__group {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.Items__input {
+    flex: 1;
+}
+
+.Items__btn {
+    flex: .5;
+    margin-left: 15px;
+    background-color: #27ccc0;
+    border: none;
+    outline: none;
+}
+
+.Item__text {
+    word-wrap: break-word;
+	word-break: break-all;
+}
+
+.Item__btn {
+    background-color: transparent;
+    outline: none;
+    color: #ff3159;
+    border: 1px solid #ff3159;
+    border-radius: 5px;
+    height: 31px;
+    align-self: center;
+}
+
+.Item__btn:hover {
+    background-color: #ff3159;
+    color: #fff;
+}
+
+.Item__badge {
+    border-radius: 40%;
+    background-color: #27ccc0;
+    margin-left: 10px;
+}
+
+.Item__current {
+    border-left: 1px solid red;
+}
