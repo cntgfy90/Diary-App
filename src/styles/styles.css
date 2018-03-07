@@ -36,7 +36,7 @@ button, a {
 
 .Items {
     border: 1px solid #f2f2f2;
-    padding: 10px 10px 10px 15px;
+    padding: 15px 0;
     width: 30%;
     box-shadow: 3px 3px 11px -1px rgba(0,0,0,.33);
     border-radius: 3px;
@@ -50,12 +50,17 @@ button, a {
     margin: 20px 0;
     border-bottom: 1px solid #f2f2f2;
     padding-bottom: 5px;
+    position: relative;
+}
+
+.Item_selected {
+    border-left: 1px solid red;
 }
 
 .Items__group {
     width: 100%;
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 
 .Items__input {
@@ -81,8 +86,13 @@ button, a {
     color: #ff3159;
     border: 1px solid #ff3159;
     border-radius: 5px;
-    height: 31px;
+    line-height: 20px;
     align-self: center;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
 }
 
 .Item__btn:hover {
@@ -98,4 +108,10 @@ button, a {
 
 .Item__current {
     border-left: 1px solid red;
+}
+
+.Items__alert {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
 }

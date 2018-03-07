@@ -1,16 +1,28 @@
-import { singleItem } from './singleItem';
-
 export const items = (state = [], action) => {
     switch(action.type) {
         case 'ADD_ITEM':
+            const newItem = {
+                title: action.title,
+                id: action.id,
+                selected: action.selected,
+                comments: action.comments
+            };
             return [
                 ...state,
-                singleItem(undefined, action)
-                // values: state.values.concat(action.item)
+                newItem
             ];
         case 'REMOVE_ITEM':
-            const index = state.indexOf(action.title);
-            return state.splice(index, 1);
+            return state.filter(({ id }) => id !== action.id);
+        case 'SELECT_ITEM':
+            state.map((item) => {
+                if (item.id === action.id) {
+                    item.selected = true;
+                    return state;
+                } else {
+                    item.selected = false;
+                    return state;
+                }
+            });
         default:
             return state;
     }

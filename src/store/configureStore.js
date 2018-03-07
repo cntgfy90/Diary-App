@@ -1,13 +1,17 @@
 import { createStore, combineReducers } from 'redux';
-import { singleItem } from './singleItem';
-import { items } from './items';
+import { singleComment } from '../reducers/singleComment';
+import { items } from '../reducers/items';
+import { comments } from '../reducers/comments';
 
 const diaryApp = combineReducers({
-    singleItem,
-    items
+    singleComment,
+    items,
+    comments
 });
 
+const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
 export default () => {
-    const store = createStore(diaryApp);
+    const store = createStore(diaryApp, reduxDevTools);
+    return store;
 }

@@ -1,9 +1,9 @@
 import React from 'react';
-import Items from './Items';
+import ItemsCard from './ItemsCard';
 
 const DiaryColumnRight = () => (
     <div className="DiaryColumnRight">
-        <Items title="Items" />
+        <ItemsCard title="Items" />
     </div>
 );
 

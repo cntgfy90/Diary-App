@@ -1,5 +1,14 @@
-// ADD_ITEM action generator
-export const addItem = ({ title, comments, id, selected }) => ({
+import uuid from 'uuid';
+
+// ADD_ITEM action creator
+export const addItem = (
+    {
+        title = '',
+        comments = [],
+        id = uuid(),
+        selected = false
+    }
+    ) => ({
     type: 'ADD_ITEM',
     title,
     comments,
@@ -7,15 +16,21 @@ export const addItem = ({ title, comments, id, selected }) => ({
     selected
 });
 
-// REMOVE_ITEM action generator
+// REMOVE_ITEM action creator
 export const removeItem = ({ id } = {}) => ({
     type: 'REMOVE_ITEM',
     id
 });
 
-// SELECT_ITEM action generator
-export const selectItem = ({ title, id } = {}) => ({
+// SELECT_ITEM action creator
+export const selectItem = ({ id } = {}) => ({
     type: 'SELECT_ITEM',
-    title,
+    id
+});
+
+// ADD_COMMENT action creator
+export const addComment = ({text, id} = {}) => ({
+    type: 'ADD_COMMENT',
+    text,
     id
 });
