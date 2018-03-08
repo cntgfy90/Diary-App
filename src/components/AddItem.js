@@ -1,10 +1,11 @@
 import React from 'react';
+import AlertMessage from './AlertMessage';
 import { connect } from 'react-redux';
 import { addItem } from '../actions/items';
 import { Button } from 'reactstrap/dist/reactstrap.es';
 
 
-class AddItem extends React.Component {
+export class AddItem extends React.Component {
     constructor(props) {
         super(props);
 
@@ -13,29 +14,32 @@ class AddItem extends React.Component {
 
         this.state = {
             title: '',
-            error: ''
+            error: '',
+            disabledBtn: false
         };
     }
 
     handleAdding() {
         const { title } = this.state;
         const { addItem } = this.props;
-        if (!title) {
-            this.setState(() => ({ error: 'Please, provide some information!' }));
-        } else {
+        if (title) {
             addItem({ title });
             this.setState(() => ({ error: '', title: '' }));
+        } else {
+            this.setState(() => ({ error: 'Please, provide some information!'}));
         }
-
     }
 
     handleInput(e) {
+        const { items } = this.props;
         const title = e.target.value;
         this.setState(() => ({ title }));
+        items.map((item) => item.title === title ? this.setState(() => ({ disabledBtn: true })) 
+                                                 : this.setState(() => ({ disabledBtn: false })));
     }
 
     render() {
-        const { title, error } = this.state;
+        const { title, error, disabledBtn } = this.state;
         return (
             <div className="Items__group">
                 <input
@@ -50,22 +54,22 @@ class AddItem extends React.Component {
                     className="Items__btn"
                     onClick={this.handleAdding}
                     color="secondary"
+                    disabled={disabledBtn}
                 >
                     Add new
                 </Button>
-                {
-                    error &&
-                    <div className="alert alert-warning Items__alert" role="alert">
-                        Please, provide some information!
-                    </div>
-                }
+                <AlertMessage error={error} />
             </div>
         );
     } 
 }
 
+const mapStateToProps = (state) => ({
+    items: state.items
+});
+
 const mapDispatchToProps = (dispatch) => ({
     addItem: (title) => dispatch(addItem(title))
 });
 
-export default AddItem = connect(null, mapDispatchToProps)(AddItem);
+export default connect(mapStateToProps, mapDispatchToProps)(AddItem);

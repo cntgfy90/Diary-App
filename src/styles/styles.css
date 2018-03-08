@@ -51,6 +51,7 @@ button, a {
     margin: 20px 0;
     padding-bottom: 5px;
     position: relative;
+    cursor: pointer;
 }
 
 .Item_selected {
@@ -97,8 +98,8 @@ button, a {
 .Item__btn {
     background-color: transparent;
     outline: none;
-    color: #ff3159;
-    border: 1px solid #ff3159;
+    color:  #27ccc0;
+    border: 1px solid  #27ccc0;
     border-radius: 5px;
     line-height: 20px;
     align-self: center;
@@ -114,7 +115,7 @@ button, a {
 }
 
 .Item__btn:hover {
-    background-color: #ff3159;
+    background-color: #27ccc0;
     color: #fff;
 }
 

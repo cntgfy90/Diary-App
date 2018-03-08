@@ -1,4 +1,5 @@
 import React from 'react';
+import AlertMessage from './AlertMessage';
 import { Alert, FormGroup, Media, Input, Col } from 'reactstrap';
 
 class AddComment extends React.Component {
@@ -9,7 +10,8 @@ class AddComment extends React.Component {
         this.handleAdding = this.handleAdding.bind(this);
 
         this.state = {
-            text: ''
+            text: '',
+            error: ''
         };
     }
 
@@ -19,18 +21,26 @@ class AddComment extends React.Component {
     }
 
     handleAdding(e) {
-        const { text } = this.state;
+        const { text, error } = this.state;
         const { addComment } = this.props;
-        if (e.ctrlKey && e.keyCode == 13) {
-            addComment({ text });
-            this.setState(() => ({ text: '' }))
+        
+        if (e.keyCode == 13 && e.ctrlKey) {
+            if (!text) {
+                this.setState(() => ({ error: 'Please, provide some information' }));
+            } else {
+                addComment({ text });
+                this.setState(() => ({ text: '', error: '' }))
+            }
         }
     }
 
     render() {
-        const { text } = this.state;
+        const { text, error } = this.state;
         return (
             <FormGroup row className="AddComment">
+                <Col sm={12}>
+                    <AlertMessage error={error} />
+                </Col>
                 <Col sm={1}>
                     <div className="square square_light"></div>
                 </Col>
