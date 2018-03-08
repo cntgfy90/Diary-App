@@ -8,7 +8,7 @@ class AddItem extends React.Component {
     constructor(props) {
         super(props);
 
-        this.handleAdd = this.handleAdd.bind(this);
+        this.handleAdding = this.handleAdding.bind(this);
         this.handleInput = this.handleInput.bind(this);
 
         this.state = {
@@ -17,7 +17,7 @@ class AddItem extends React.Component {
         };
     }
 
-    handleAdd() {
+    handleAdding() {
         const { title } = this.state;
         const { addItem } = this.props;
         if (!title) {
@@ -48,7 +48,7 @@ class AddItem extends React.Component {
                 />
                 <Button
                     className="Items__btn"
-                    onClick={this.handleAdd}
+                    onClick={this.handleAdding}
                     color="secondary"
                 >
                     Add new
@@ -63,10 +63,6 @@ class AddItem extends React.Component {
         );
     } 
 }
-
-const mapStateToProps = (state, props) => ({
-    items: state.items
-});
 
 const mapDispatchToProps = (dispatch) => ({
     addItem: (title) => dispatch(addItem(title))

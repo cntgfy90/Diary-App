@@ -22,7 +22,7 @@ button, a {
     display: flex;
     width: 100%;
     justify-content: space-around;
-    align-items: center;
+    align-items: baseline;
 }
 
 .DiaryColumnLeft__title {
@@ -34,12 +34,13 @@ button, a {
     color: #808080;
 }
 
-.Items {
+.Items, .Comments {
     border: 1px solid #f2f2f2;
     padding: 15px 0;
-    width: 30%;
+    width: 40%;
     box-shadow: 3px 3px 11px -1px rgba(0,0,0,.33);
     border-radius: 3px;
+    margin-top: 100px;
 }
 
 .Item {
@@ -48,7 +49,6 @@ button, a {
     display: flex;
     justify-content: space-between;
     margin: 20px 0;
-    border-bottom: 1px solid #f2f2f2;
     padding-bottom: 5px;
     position: relative;
 }
@@ -61,6 +61,7 @@ button, a {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    padding: 0 15px;
 }
 
 .Items__input {
@@ -75,9 +76,22 @@ button, a {
     outline: none;
 }
 
-.Item__text {
+.Item__text, Comment__text {
     word-wrap: break-word;
-	word-break: break-all;
+    word-break: break-all;
+    border: none;
+}
+
+.Commnet__text {
+    font-size: 10px;
+    width: 80%;
+}
+
+.Item__text.active-item {
+    border-left: 4px solid red;
+    transition: all .5s;
+    margin-left: -4px;
+    border-radius: 0;
 }
 
 .Item__btn {
@@ -95,6 +109,10 @@ button, a {
     z-index: 1000;
 }
 
+.Items__title, .Comments__title {
+    padding-left: 15px;
+}
+
 .Item__btn:hover {
     background-color: #ff3159;
     color: #fff;
@@ -106,12 +124,61 @@ button, a {
     margin-left: 10px;
 }
 
-.Item__current {
-    border-left: 1px solid red;
-}
-
 .Items__alert {
     display: block;
     width: 80%;
     margin: 10px auto;
+}
+
+.AddComment {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.AddComment__input { 
+    border-radius: 3px;
+    margin-left: -5px;
+}
+
+.Commnets__card {
+    margin: 15px;
+}
+
+.Comments__alert {
+    margin: 50px 10px;
+}
+
+.Comment__text {
+    word-wrap: break-word;
+    word-break: break-all;
+    margin-left: -20px;
+}
+
+.Comment {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 5px;
+    position: relative;
+}
+
+.Comment:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    max-width: 300px;
+    height: 1px;
+    background-color: #f2f2f2;
+}
+
+.square {
+    width: 50px;
+    height: 50px;
+    background-color: #2b2f3e;
+}
+
+.square_light {
+    background-color: #27ccc0;
+    margin-left: 19px;
 }

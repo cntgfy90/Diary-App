@@ -1,9 +1,25 @@
 import React from 'react';
+import uuid from 'uuid';
 import Comment from './Comment';
+import AddComment from './AddComment';
+import { Alert } from 'reactstrap';
 
-const CommentsList = () => (
+const CommentsList = ({ comments, addComment }) => (
     <ul>
-        <Comment />
+        {
+            comments.length > 0 ?
+            comments.map((comment) => (
+                <div>
+                    <Comment key={uuid()} comment={comment} />
+                </div>
+            )) :
+            <div>
+                <Alert color="info">
+                    There is no currently any comment. You may add one!
+                </Alert>
+            </div>
+        }
+        <AddComment addComment={addComment}/>
     </ul>
 );
 

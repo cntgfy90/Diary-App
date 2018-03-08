@@ -29,7 +29,12 @@ export const selectItem = ({ id } = {}) => ({
 });
 
 // ADD_COMMENT action creator
-export const addComment = ({text, id} = {}) => ({
+export const addComment = (
+    {
+        text = '',
+        id = uuid()
+    }
+) => ({
     type: 'ADD_COMMENT',
     text,
     id

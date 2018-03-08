@@ -1,3 +1,5 @@
+import { comments } from './comments';
+
 export const items = (state = [], action) => {
     switch(action.type) {
         case 'ADD_ITEM':
@@ -14,13 +16,20 @@ export const items = (state = [], action) => {
         case 'REMOVE_ITEM':
             return state.filter(({ id }) => id !== action.id);
         case 'SELECT_ITEM':
-            state.map((item) => {
-                if (item.id === action.id) {
-                    item.selected = true;
-                    return state;
+            return state.map((item) => {
+                return item.id === action.id ? {...item, selected: true}
+                                             : {...item, selected: false}
+            });
+        case 'ADD_COMMENT':
+        console.log(state)
+            return state.map((item) => {
+                if (item.selected) {
+                    return {
+                        ...item,
+                        comments: item.comments.concat([action.text])
+                    }
                 } else {
-                    item.selected = false;
-                    return state;
+                    return {...item}
                 }
             });
         default:
