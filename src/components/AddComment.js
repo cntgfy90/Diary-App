@@ -1,6 +1,6 @@
 import React from 'react';
 import AlertMessage from './AlertMessage';
-import { Alert, FormGroup, Media, Input, Col } from 'reactstrap';
+import { FormGroup, Input, Col } from 'reactstrap';
 
 class AddComment extends React.Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class AddComment extends React.Component {
         const { text, error } = this.state;
         const { addComment } = this.props;
         
-        if (e.keyCode == 13 && e.ctrlKey) {
+        if (e.keyCode === 13 && e.ctrlKey) {
             if (!text) {
                 this.setState(() => ({ error: 'Please, provide some information' }));
             } else {

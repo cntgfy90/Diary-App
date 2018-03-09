@@ -1,5 +1,3 @@
-import { comments } from './comments';
-
 export const items = (state = [], action) => {
     switch(action.type) {
         case 'ADD_ITEM':
@@ -21,16 +19,9 @@ export const items = (state = [], action) => {
                                              : {...item, selected: false}
             });
         case 'ADD_COMMENT':
-        console.log(state)
             return state.map((item) => {
-                if (item.selected) {
-                    return {
-                        ...item,
-                        comments: item.comments.concat([action.text])
-                    }
-                } else {
-                    return {...item}
-                }
+                return item.selected ? {...item, comments: item.comments.concat([action.text])}
+                                     : {...item}
             });
         default:
             return state;

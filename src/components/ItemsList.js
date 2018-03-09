@@ -1,16 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Item from './Item';
+import { removeItem, selectItem } from '../actions/items';
+import { Badge, ListGroup, ListGroupItem, Button } from 'reactstrap';
 
-export const ItemsList = ({ items }) => (
+const Item = ({ removeItem, selectItem, items }) => (
     <ul>
         {
-           items.map((item) => 
-                <Item
-                    key={item.id}
-                    {...item}
-                />
-            ) 
+            items.map(({ id, selected, comments, title }) => (
+                <ListGroup className="Item" key={id}>
+                    <ListGroupItem 
+                        onClick={() => selectItem({ id })}
+                        className={selected ? 'Item__text active-item' : 'Item__text'}
+                        >{title} <Badge className="Item__badge">{comments.length}</Badge>
+                    </ListGroupItem>
+                    <Button className="Item__btn"
+                            onClick={() => removeItem({ id })}>Delete</Button>
+                </ListGroup>
+            ))
         }
     </ul>
 );
@@ -19,5 +25,10 @@ const mapStateToProps = (state) => ({
     items: state.items
 });
 
-export default connect(mapStateToProps)(ItemsList);
+const mapDispatchToProps = (dispatch) => ({
+    removeItem: (id) => dispatch(removeItem(id)),
+    selectItem: (id) => dispatch(selectItem(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Item);
 

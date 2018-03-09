@@ -1,17 +1,18 @@
 import { createStore, combineReducers } from 'redux';
-import { singleComment } from '../reducers/singleComment';
+import { loadState } from '../localStorage';
 import { items } from '../reducers/items';
-import { comments } from '../reducers/comments';
 
+const persistedState = loadState();
+
+// ### ToDo ###
+// Devide the reducer on some pieces.
 const diaryApp = combineReducers({
-    //singleComment,
     items
-    //comments
 });
 
 const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
 export default () => {
-    const store = createStore(diaryApp, reduxDevTools);
+    const store = createStore(diaryApp, persistedState, reduxDevTools);
     return store;
 }
